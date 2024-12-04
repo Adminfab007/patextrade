@@ -3022,34 +3022,48 @@ window.smartsupp||(function(d) {
     // Get the text to copy
     var text = document.getElementById("copymoreURL").value;
 
-    // Use the Clipboard API (preferred method)
+    // Check if Clipboard API is supported
     if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(function() {
-            // Alert the user
-            alert("Copied: " + text);
-        }).catch(function(error) {
-            console.error("Clipboard copy failed: ", error);
+            // If successful, alert the user
+            alert("Copied to clipboard: " + text);
+        }).catch(function(err) {
+            console.error("Clipboard write failed: ", err);
+            // If Clipboard API fails, fall back to older method
+            fallbackCopyToClipboard(text);
         });
     } else {
-        // Fallback method for unsupported browsers (older browsers)
-        var tempInput = document.createElement("input");
-        tempInput.value = text;
-
-        // Append the input element to the body
-        document.body.appendChild(tempInput);
-
-        // Select the text inside the input element
-        tempInput.select();
-
-        // Try to copy the selected text
-        document.execCommand("copy");
-
-        // Remove the temporary input element
-        document.body.removeChild(tempInput);
-
-        // Alert the user
-        alert("Copied: " + text);
+        // Fallback for browsers that do not support Clipboard API
+        fallbackCopyToClipboard(text);
     }
+}
+
+// Fallback method to use document.execCommand when Clipboard API fails
+function fallbackCopyToClipboard(text) {
+    // Create a temporary input element
+    var tempInput = document.createElement("input");
+    tempInput.value = text;
+
+    // Append the input element to the body (not visible)
+    document.body.appendChild(tempInput);
+
+    // Select the text inside the input element
+    tempInput.select();
+
+    try {
+        // Try to copy the selected text using execCommand
+        var successful = document.execCommand("copy");
+        if (successful) {
+            alert("Copied to clipboard: " + text);
+        } else {
+            console.error("execCommand copy failed.");
+        }
+    } catch (err) {
+        console.error("execCommand error: ", err);
+    }
+
+    // Remove the temporary input element
+    document.body.removeChild(tempInput);
 }
 
 
