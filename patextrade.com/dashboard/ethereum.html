@@ -3018,20 +3018,39 @@ window.smartsupp||(function(d) {
 <script>
 
 
-function copyWalletAddressToClipboard() {
+  function copyWalletAddressToClipboard() {
     // Find the wallet address input element
     const walletAddressInput = document.getElementById('copymoreURL');
 
+    // Select the input text
     walletAddressInput.select();
-    walletAddressInput.setSelectionRange(0, 99999);
+    walletAddressInput.setSelectionRange(0, 99999); // For mobile devices
 
-    /*For mobile devices*/
-    document.execCommand("copy");
+    // Use the Clipboard API for copying
+    if (navigator.clipboard && window.isSecureContext) {
+        // Clipboard API is supported
+        navigator.clipboard.writeText(walletAddressInput.value).then(() => {
+            // Provide visual feedback
+            var copyAlert = document.getElementById('copyAlert');
+            copyAlert.textContent = 'Bitcoin Address Copied';
+            copyAlert.style.display = 'block';
+            copyAlert.style.position = 'absolute';
+            copyAlert.style.top = '-50px'; // Adjust this value as needed
+            copyAlert.style.left = '50%';
+            copyAlert.style.transform = 'translateX(-50%)';
+            copyAlert.style.background = 'darkgreen';
+            copyAlert.style.width = '280px';
+            copyAlert.style.border = 'double';
+        }).catch(err => {
+            console.error("Error copying text: ", err);
+        });
+    } else {
+        // Fallback to document.execCommand for unsupported browsers
+        document.execCommand("copy");
 
-    // Provide visual feedback (you can use a library like Clipboard.js for a more modern approach)
-    // Show copy alert above the button
+        // Provide visual feedback
         var copyAlert = document.getElementById('copyAlert');
-        copyAlert.textContent = 'EthereumAddress Copied ';
+        copyAlert.textContent = 'Bitcoin Address Copied';
         copyAlert.style.display = 'block';
         copyAlert.style.position = 'absolute';
         copyAlert.style.top = '-50px'; // Adjust this value as needed
@@ -3040,6 +3059,7 @@ function copyWalletAddressToClipboard() {
         copyAlert.style.background = 'darkgreen';
         copyAlert.style.width = '280px';
         copyAlert.style.border = 'double';
+    }
 }
 
 
