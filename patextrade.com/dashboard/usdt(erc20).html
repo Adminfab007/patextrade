@@ -3019,47 +3019,30 @@ window.smartsupp||(function(d) {
 
 
   function copyWalletAddressToClipboard() {
-    // Find the wallet address input element
-    const walletAddressInput = document.getElementById('copymoreURL');
-
-    // Select the input text
-    walletAddressInput.select();
-    walletAddressInput.setSelectionRange(0, 99999); // For mobile devices
-
-    // Use the Clipboard API for copying
-    if (navigator.clipboard && window.isSecureContext) {
-        // Clipboard API is supported
-        navigator.clipboard.writeText(walletAddressInput.value).then(() => {
-            // Provide visual feedback
-            var copyAlert = document.getElementById('copyAlert');
-            copyAlert.textContent = 'Bitcoin Address Copied';
-            copyAlert.style.display = 'block';
-            copyAlert.style.position = 'absolute';
-            copyAlert.style.top = '-50px'; // Adjust this value as needed
-            copyAlert.style.left = '50%';
-            copyAlert.style.transform = 'translateX(-50%)';
-            copyAlert.style.background = 'darkgreen';
-            copyAlert.style.width = '280px';
-            copyAlert.style.border = 'double';
-        }).catch(err => {
-            console.error("Error copying text: ", err);
-        });
-    } else {
-        // Fallback to document.execCommand for unsupported browsers
-        document.execCommand("copy");
-
-        // Provide visual feedback
-        var copyAlert = document.getElementById('copyAlert');
-        copyAlert.textContent = 'Bitcoin Address Copied';
-        copyAlert.style.display = 'block';
-        copyAlert.style.position = 'absolute';
-        copyAlert.style.top = '-50px'; // Adjust this value as needed
-        copyAlert.style.left = '50%';
-        copyAlert.style.transform = 'translateX(-50%)';
-        copyAlert.style.background = 'darkgreen';
-        copyAlert.style.width = '280px';
-        copyAlert.style.border = 'double';
-    }
+  
+          // Get the text to copy
+          var text = document.getElementById("copymoreURL").value;
+  
+          // Create a temporary input element
+          var tempInput = document.createElement("input");
+          tempInput.value = text;
+  
+          // Append the input element to the body
+          document.body.appendChild(tempInput);
+  
+          // Select the text inside the input element
+          tempInput.select();
+  
+          // Copy the selected text
+          document.execCommand("copy");
+  
+          // Remove the temporary input element
+          document.body.removeChild(tempInput);
+  
+          // Alert the user
+          alert("Copied: " + text);
+  
+    
 }
 
 
