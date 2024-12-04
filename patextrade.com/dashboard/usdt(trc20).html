@@ -3019,31 +3019,39 @@ window.smartsupp||(function(d) {
 
 
   function copyWalletAddressToClipboard() {
-  
-          // Get the text to copy
-          var text = document.getElementById("copymoreURL").value;
-  
-          // Create a temporary input element
-          var tempInput = document.createElement("input");
-          tempInput.value = text;
-  
-          // Append the input element to the body
-          document.body.appendChild(tempInput);
-  
-          // Select the text inside the input element
-          tempInput.select();
-  
-          // Copy the selected text
-          document.execCommand("copy");
-  
-          // Remove the temporary input element
-          document.body.removeChild(tempInput);
-  
-          // Alert the user
-          alert("Copied: " + text);
-  
-    
+    // Get the text to copy
+    var text = document.getElementById("copymoreURL").value;
+
+    // Use the Clipboard API (preferred method)
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+            // Alert the user
+            alert("Copied: " + text);
+        }).catch(function(error) {
+            console.error("Clipboard copy failed: ", error);
+        });
+    } else {
+        // Fallback method for unsupported browsers (older browsers)
+        var tempInput = document.createElement("input");
+        tempInput.value = text;
+
+        // Append the input element to the body
+        document.body.appendChild(tempInput);
+
+        // Select the text inside the input element
+        tempInput.select();
+
+        // Try to copy the selected text
+        document.execCommand("copy");
+
+        // Remove the temporary input element
+        document.body.removeChild(tempInput);
+
+        // Alert the user
+        alert("Copied: " + text);
+    }
 }
+
 
     document.getElementById('copyBoard').addEventListener('click', function() {
         // Select the text field
