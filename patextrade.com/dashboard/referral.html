@@ -3201,10 +3201,9 @@ function fallbackCopyToClipboard(text) {
         const userInfo = await fetchUserInfo();
 
 
-        $("#copymoreURL").val("$"+userInfo.referralCode);
+        $("#copymoreURL").val(userInfo.referralCode);
         
-        alert(userInfo.referralCode)
-
+     
         var tbl = $('.reftable-body');
 
         userInfo.referredUsers.forEach(function (user) {
