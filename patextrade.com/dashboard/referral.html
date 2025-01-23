@@ -9,7 +9,7 @@
     <meta name="keywords" content="investment">
     <link rel="shortcut icon" href="http://Patextrade.com/assets/images/logoIcon/favicon.png" type="image/x-icon">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js">
     <link rel="apple-touch-icon" href="./confirmdeposit_files/logo.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -1248,7 +1248,7 @@ function depositController(url) {
     });
 }
 
-/*function copyWalletAddressToClipboard() {
+function copyWalletAddressToClipboard() {
     // Find the wallet address input element
     const walletAddressInput = document.getElementById('copymoreURL');
 
@@ -1260,7 +1260,7 @@ function depositController(url) {
 
     // Provide visual feedback (you can use a library like Clipboard.js for a more modern approach)
     alert('Wallet Address Copied!');
-}*/
+}
 
 
 
@@ -2221,7 +2221,7 @@ body.dark .alert-warning {
               </g>
               <path d="M7 7l-5 5 5 5" stroke="#11142d"></path>
             </svg></button><button class="sidebar__close"><div class="sidebar__icon"><svg class="icon icon-close"><use xlink:href="http://Patextrade.com/dashcss/assets/newBack/img/sprite.svg#icon-close"></use></svg></div></button></div>
-        <style>
+            <style>
   .side_icon{
 
     margin-right: 20px;
@@ -2252,7 +2252,7 @@ body.dark .alert-warning {
             <div class="sidebar__text">Live Trade</div>
           </a>
           
-          <a class="sidebar__item active " href="copytransactions.html">
+          <a class="sidebar__item  active" href="copytransactions.html">
             <div class="side_icon"><i class="fas fa-history" style="color: white;"></i></div>
             <div class="sidebar__text">Deposits</div>
           </a>
@@ -2982,12 +2982,12 @@ window.smartsupp||(function(d) {
         });
     })(jQuery);
 </script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <div class="activity">
  <div class="activity__container">
               <div class="popup__box">
-              <div class="popup__title h6">Deposit Confirmation</div>
+              <div class="popup__title h6">Referrals</div>
              <div class="exchange">
             <div class="exchange__top">
                 <div class="exchange__cell">
@@ -2998,52 +2998,105 @@ window.smartsupp||(function(d) {
         <div class="col-md-8">
             <div class="mb-4">
                 <h3 class="mb-2"></h3>
-                <p><i class="fas fa-wallet"></i> Bitcoin Payment</p>
+                <p><i class="fas fa-wallet"></i><span id="method"> Referral Code</span></p>
             </div>
              
             <br><br>
             <form method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="_token" value="g6DuYprQydbtBW8TwGjKUT15Rgy1zZX33Bg2Yoj5">                
-                <p class="text-center mt-2">You have requested <b class="text--success">200.00 USD</b> , Please pay                                     for successful payment                                </p>
+                                   
+                        <p class="text-center mt-2">Referrals from trusted sources may be eligible for special offers or rewards. See our referral program terms for more details.Invite your friends to Trade-Autocopy and Earn 15% on Friends trading fees.</p>
+
                                 
                    <br>
                    
                    
                    
-                   
+                   <div>Your referral Code:</div>
                    <div class="input-group">
         <input type="text" class="popup__input form-control form--control referralURL" id="copymoreURL" value="" readonly="">
         <span class="copyBoard1 input-group-text" style="background-color: #3a64d1; color: white;" onclick="copyWalletAddressToClipboard()"><i class="fa fa-copy" style="color: white;"></i></span>
     </div>
         <div id="copyAlert" class="alert alert-success mt-2" style="display: none;"></div>           
                    
-            <br>      
+            <br>   
+            
+            <div class="accordion-body text-center">
+              
+            </div>
+            <table id="customers" class="table withtable">
+  <tbody class="reftable-body">
+    <tr>
+    <th>UPLINE</th>
+    <th>REFFERRED USERS</th>
+    <th>BONUS</th>
+    
+  </tr>
+  
+                
+          
+  
+</tbody></table>
+            
+            <div style="display: flex; justify-content: center; text-align: center;">
+                <center>
+                                    </center>
+            </div>
+              
+                          
+            
+          </div>
+                
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 
 
 function copyWalletAddressToClipboard() {
-    // Find the wallet address input element
-    const walletAddressInput = document.getElementById('copymoreURL');
+    // Get the text to copy
+    var text = document.getElementById("copymoreURL").value;
 
-    walletAddressInput.select();
-    walletAddressInput.setSelectionRange(0, 99999);
+    // Check if Clipboard API is supported
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+            // If successful, alert the user
+            alert("Copied to clipboard: " + text);
+        }).catch(function(err) {
+            console.error("Clipboard write failed: ", err);
+            // If Clipboard API fails, fall back to older method
+            fallbackCopyToClipboard(text);
+        });
+    } else {
+        // Fallback for browsers that do not support Clipboard API
+        fallbackCopyToClipboard(text);
+    }
+}
 
-    /*For mobile devices*/
-    document.execCommand("copy");
+// Fallback method to use document.execCommand when Clipboard API fails
+function fallbackCopyToClipboard(text) {
+    // Create a temporary input element
+    var tempInput = document.createElement("input");
+    tempInput.value = text;
 
-    // Provide visual feedback (you can use a library like Clipboard.js for a more modern approach)
-    // Show copy alert above the button
-        var copyAlert = document.getElementById('copyAlert');
-        copyAlert.textContent = 'Bitcoin Address Copied ' + copyText.value;
-        copyAlert.style.display = 'block';
-        copyAlert.style.position = 'absolute';
-        copyAlert.style.top = '-50px'; // Adjust this value as needed
-        copyAlert.style.left = '50%';
-        copyAlert.style.transform = 'translateX(-50%)';
-        copyAlert.style.background = 'darkgreen';
-        copyAlert.style.width = '280px';
-        copyAlert.style.border = 'double';
+    // Append the input element to the body (not visible)
+    document.body.appendChild(tempInput);
+
+    // Select the text inside the input element
+    tempInput.select();
+
+    try {
+        // Try to copy the selected text using execCommand
+        var successful = document.execCommand("copy");
+        if (successful) {
+            alert("Copied to clipboard: " + text);
+        } else {
+            console.error("execCommand copy failed.");
+        }
+    } catch (err) {
+        console.error("execCommand error: ", err);
+    }
+
+    // Remove the temporary input element
+    document.body.removeChild(tempInput);
 }
 
 
@@ -3072,19 +3125,8 @@ function copyWalletAddressToClipboard() {
  
                                 
                                 
-                <div class="popup__fieldset">
-              <div class="popup__row">
-                <div class="popup__field">
-        <label class="form-label">Transaction ID
-        </label>
-
-                    <input type="text" class="popup__input" name="transaction_id" value="" required="" id="transaction_id">
-            </div>
-              </div>
-                
-                </div>
-                
-                 <input type="submit" class="header__btn btn start_btn" value="Confirm Payment">
+              
+              
             </form>
         </div>
     </div>
@@ -3109,7 +3151,7 @@ function copyWalletAddressToClipboard() {
         </div>
         <!-- cookies dark version end -->
     
-    <script src="./confirmdeposit_files/jquery-3.6.0.min.js.download"></script>
+    
     <script src="./confirmdeposit_files/bootstrap.bundle.min.js.download"></script>
 
     <!-- Pluglin Link -->
@@ -3125,24 +3167,70 @@ function copyWalletAddressToClipboard() {
     <link rel="stylesheet" href="./confirmdeposit_files/iziToast.min.css">
 <script src="./confirmdeposit_files/iziToast.min.js.download"></script>
 
-
 <script>
-    "use strict";
-    function notify(status, message) {
-        if (typeof message == 'string') {
-            iziToast[status]({
-                message: message,
-                position: "topRight"
-            });
-        } else {
-            $.each(message, function(i, val) {
-                iziToast[status]({
-                    message: val,
-                    position: "topRight"
-                });
-            });
-        }
-    }
+        
+    
+        
+      async function fetchUserInfo() {
+        var parsedData = localStorage.getItem('user')
+        var userFromLS = JSON.parse((parsedData))
+
+        console.log(userFromLS);
+
+        const response = await $.ajax({
+          type: "GET",
+          url: `  https://patextrade-vercel-ef96f6576593.herokuapp.com/users/${userFromLS.email}`,
+          dataType: "json",
+          timeout: 30000,
+          success:  function (data) {
+            // Object.assign(currentUser, data.data)
+            console.log("fetched")
+             localStorage.setItem("user",JSON.stringify(data.data))
+          },
+          error: function () {
+            alert(error)
+          }
+        });
+
+        return response.data;
+      }
+
+      $(document).ready(async function () {
+        let sum;
+        fetchUserInfo()
+        const userInfo = await fetchUserInfo();
+
+
+        $("#copymoreURL").val("$"+userInfo.referralCode);
+        
+        alert(userInfo.referralCode)
+
+        var tbl = $('.reftable-body');
+
+        userInfo.referredUsers.forEach(function (user) {
+      console.log(user)
+        var row = $('<tr></tr>').appendTo(tbl);
+        $('<td></td>').text(`${userInfo.referredBy}`).appendTo(row);
+	    
+        $('<td></td>').text(`${user}`).appendTo(row);
+        $('<td></td>').text(`${"$15"}`).appendTo(row);
+	    
+       
+        // $('<td></td>').text(`${withdrawal.status}`).appendTo(row);
+      
+      
+         
+        tbl.appendTo($(".withtable"));
+   
+
+
+        });
+    
+  
+
+      })
+    
+       
 </script>
 
     
@@ -3219,6 +3307,253 @@ function copyWalletAddressToClipboard() {
 
 
 
+  
+  
+<script>
+        (function ($) {
+            "use strict";
+            $('select[name="gateway_withdraw"]').change(function(){
+                
+                var amountInput = document.getElementById('amount_withdraw');
+                var amount = parseFloat(amountInput.value);
+                
+                if(!$('select[name=gateway_withdraw]').val()){
+                    $('.operations__itemm').addClass('d-none');
+                    return false;
+                }
+                
+                var imageUrl = $('select[name="gateway_withdraw"] option:selected').data('src');
+    
+                
+                var resource = $('select[name="gateway_withdraw"] option:selected').data('gateway_withdraw');
+                var fixed_charge = parseFloat(resource.fixed_charge);
+                var percent_charge = parseFloat(resource.percent_charge);
+                
+                
+                if (resource.currency == 'BCH'){
+                var rate = 0.0021;
+                var toFixDigit = 3;
+                }
+                if (resource.currency == 'BTC'){
+                var rate = 0.00001457;
+                var toFixDigit = 6;
+                }
+                if (resource.currency == 'ETH'){
+                var rate = 0.0003;
+                var toFixDigit = 3;
+                }
+                
+                if (resource.currency == 'LTC'){
+                var rate = 0.0125;
+                var toFixDigit = 3;
+                }
+                
+                if (resource.currency == 'XRP'){
+                var rate = 2.0246;
+                var toFixDigit = 3;
+                }
+                
+                if (resource.currency == 'DOGE'){
+                var rate = 6.849;
+                var toFixDigit = 3;
+                }
+                
+                if (resource.currency == 'USDT-Erc20'){
+                var rate = 1;
+                var toFixDigit = 2;
+                }
+                
+                if (resource.currency == 'USDT-Trc20'){
+                var rate = 1;
+                var toFixDigit = 2;
+                }
+                
+                
+                if (resource.currency == 'BNB'){
+                var rate = 0.00146;
+                var toFixDigit = 4;
+                }
+                
+                 
+
+                $('.mini').text(parseFloat(resource.min_limit).toFixed(2));
+                if (!amount) {
+                    amount = 0;
+                }
+                
+                
+                if(amount <= 0){
+                    $('.operations__itemm').addClass('d-none');
+                    return false;
+                }
+                
+                $('.operations__itemm').removeClass('d-none');
+                
+                
+                var chargee = parseFloat(fixed_charge + (amount * percent_charge / 100)).toFixed(2);
+                $('.chargee').text(chargee);
+                
+                 if (resource.currency != 'USD') {
+                    var rateElement = `<span class="wallets__money" style="font-size: 15px;">Conversion Rate</span> <span><span  class="wallets__money" style="font-size: 15px;">1 USD = <span class="rate">${rate}</span>  <span class="method_currency">${resource.currency}</span></span></span>`;
+                    $('.rate-element').html(rateElement)
+                    $('.rate-element').removeClass('d-none');
+                    $('.in-site-cur').removeClass('d-none');
+                    $('.rate-element').addClass('d-flex');
+                    $('.in-site-cur').addClass('d-flex');
+                }else{
+                    $('.rate-element').html('')
+                    $('.rate-element').addClass('d-none');
+                    $('.in-site-cur').addClass('d-none');
+                    $('.rate-element').removeClass('d-flex');
+                    $('.in-site-cur').removeClass('d-flex');
+                }
+                
+                var payablee = parseFloat(amount).toFixed(2);
+                $('.payablee').text(numberWithCommas(payablee));
+                
+      
+                var final_amot = (parseFloat(amount)*rate).toFixed(toFixDigit);
+                $('.final_amot').text(final_amot);
+                $('input[name=finalamount_withdraw]').val(final_amot);
+
+                $('.method_currency_withdraw').text(resource.currency);
+                $('input[name=currency_withdraw]').val(resource.currency);
+                 
+                $('.method_name_withdraw').text(resource.name);
+                $('.withdraw_method_icon').html('<img src="' + imageUrl + '" alt="Method Icon">');
+               
+                $('input[name=amount_withdraw]').on('input');
+            });
+            $('input[name=amount_withdraw]').on('input',function(){
+                var data = $('select[name=gateway_withdraw]').change();
+                $('.amount_withdraw').text(parseFloat($(this).val()).toFixed(2));
+            });
+
+        
+        
+        })(jQuery);
+    </script>
+    <script>
+        (function ($) {
+            "use strict";
+            $('select[name=gateway]').change(function(){
+                if(!$('select[name=gateway]').val()){
+                    $('.operations__item').addClass('d-none');
+                    return false;
+                }
+                var resource = $('select[name=gateway] option:selected').data('gateway');
+                var icon = $('select[name=gateway] option:selected').data('src');
+                var fixed_charge = parseFloat(resource.fixed_charge);
+                var percent_charge = parseFloat(resource.percent_charge);
+                if (resource.currency == 'BCH'){
+                var rate = 0.0021;
+                var toFixDigit = 3;
+                }
+                if (resource.currency == 'BTC'){
+                var rate = 0.00001457;
+                var toFixDigit = 6;
+                }
+                if (resource.currency == 'ETH'){
+                var rate = 0.0003;
+                var toFixDigit = 3;
+                }
+                
+                if (resource.currency == 'LTC'){
+                var rate = 0.0125;
+                var toFixDigit = 3;
+                }
+                
+                if (resource.currency == 'XRP'){
+                var rate = 2.0246;
+                var toFixDigit = 3;
+                }
+                
+                if (resource.currency == 'DOGE'){
+                var rate = 6.849;
+                var toFixDigit = 3;
+                }
+                
+                if (resource.currency == 'USDT-Erc20'){
+                var rate = 1;
+                var toFixDigit = 2;
+                }
+                
+                if (resource.currency == 'USDT-Trc20'){
+                var rate = 1;
+                var toFixDigit = 2;
+                }
+                
+                
+                if (resource.currency == 'BNB'){
+                var rate = 0.00146;
+                var toFixDigit = 4;
+                }
+                
+                
+
+
+                if(resource.method.crypto == 1){
+                    var toFixedDigit = 8;
+                    $('.crypto_currency').removeClass('d-none');
+                    $('.hide__inner').addClass('d-none');
+                }else{
+                    var toFixedDigit = 8;
+                    $('.crypto_currency').addClass('d-none');
+                    $('.hide__inner').removeClass('d-none');
+                }
+                $('.min').text(parseFloat(resource.min_amount).toFixed(2));
+                $('.max').text(parseFloat(resource.max_amount).toFixed(2));
+                var amount = parseFloat($('input[name=amount]').val());
+                if (!amount) {
+                    amount = 0;
+                }
+                if(amount <= 0){
+                    $('.operations__item').addClass('d-none');
+                    return false;
+                }
+                $('.operations__item').removeClass('d-none');
+                $('.hide__inner').addClass('d-none');
+                var charge = parseFloat(fixed_charge + (amount * percent_charge / 100)).toFixed(2);
+                $('.charge').text(charge);
+                var payable = parseFloat(amount).toFixed(2);
+                $('.payable').text(numberWithCommas(payable));
+                
+                
+                
+                var final_amo = (parseFloat(amount)*rate).toFixed(toFixDigit);
+                $('.final_amo').text(final_amo);
+                
+                $('input[name=finalamount]').val(final_amo);
+                
+                if (resource.currency != 'USD') {
+                    var rateElement = `<span class="wallets__money" style="font-size: 15px;">Conversion Rate</span> <span><span  class="wallets__money" style="font-size: 15px;">1 USD = <span class="rate">${rate}</span>  <span class="method_currency">${resource.currency}</span></span></span>`;
+                    $('.rate-element').html(rateElement)
+                    $('.rate-element').removeClass('d-none');
+                    $('.in-site-cur').removeClass('d-none');
+                    $('.rate-element').addClass('d-flex');
+                    $('.in-site-cur').addClass('d-flex');
+                }else{
+                    $('.rate-element').html('')
+                    $('.rate-element').addClass('d-none');
+                    $('.in-site-cur').addClass('d-none');
+                    $('.rate-element').removeClass('d-flex');
+                    $('.in-site-cur').removeClass('d-flex');
+                }
+                $('.method_currency').text(resource.currency);
+                $('.method_name').text(resource.name);
+                $('.method_icon').html('<img src="' + icon + '" alt="Method Icon">');
+                $('input[name=currency]').val(resource.currency);
+                $('input[name=amount]').on('input');
+            });
+            $('input[name=amount]').on('input',function(){
+                $('select[name=gateway]').change();
+                $('.amount').text(parseFloat($(this).val()).toFixed(2));
+            });
+        })(jQuery);
+    </script>
+    
+
+    
    
     
     
