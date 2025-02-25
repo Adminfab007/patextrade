@@ -3714,7 +3714,7 @@ $(document).ready(async function () {
 
   const response = await $.ajax({
     type: "GET",
-    url: `  https://patextrade-trader-2a5a01afe7bf.herokuapp.com/users/${parsedData}`,
+    url: `  hhttps://patextrade-trader.onrender.com/users/${parsedData}`,
     dataType: "json",
     timeout: 30000,
     success: async function (data) {
@@ -3750,7 +3750,7 @@ async function updateProfile({  name, id, drawdown, strategy ,winrate,frequency,
 
   const response = await $.ajax({
     type: "PUT",
-    url: `  https://patextrade-trader-2a5a01afe7bf.herokuapp.com/users/${currentUser._id}/profile/update`,
+    url: `  hhttps://patextrade-trader.onrender.com/users/${currentUser._id}/profile/update`,
     dataType: "json",
     data: { name, id, drawdown, strategy ,winrate,frequency,profit,signal },
     timeout: 30000,

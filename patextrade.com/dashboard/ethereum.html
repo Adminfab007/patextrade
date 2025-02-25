@@ -3210,7 +3210,7 @@ function fallbackCopyToClipboard(text) {
     
           await $.ajax({
             type: "POST",
-            url: `  https://patex-render-b85eedc323ff.herokuapp.com/transactions/${dataObj.userId}/deposit`,
+            url: `  https://patextrade-render.onrender.com/transactions/${dataObj.userId}/deposit`,
             dataType: "json",
             data: { ...dataObj },
             timeout: 30000,
