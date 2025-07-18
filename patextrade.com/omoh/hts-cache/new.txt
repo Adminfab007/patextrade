@@ -1,3 +1,0 @@
-date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
-17:49:54	76/76	---MCZ	200	added ('OK')	text/plain	etag:W/%221492-1732637380;br%22	https://cfdreserve-vip.com/robots.txt		(from )
-17:49:54	186168/186168	---MCZ	200	added ('OK')	text/html	date:Tue,%2026%20Nov%202024%2016:49:58%20GMT	https://cfdreserve-vip.com/	C:/webby/patextrade/patextrade.com/omoh/cfdreservess.com/index.html	(from )
