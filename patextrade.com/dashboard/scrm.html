@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Scrimba Demo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css">
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; height: 100vh; margin: 0; }
+    #editor { flex: 1; border-right: 1px solid #ccc; }
+    #rightPanel { flex: 1; display: flex; flex-direction: column; }
+    #preview { flex: 1; border: none; }
+    #controls { padding: 8px; border-bottom: 1px solid #ccc; }
+    button { margin-right: 5px; }
+  </style>
+</head>
+<body>
+
+<div id="editor"></div>
+
+<div id="rightPanel">
+  <div id="controls">
+    <button id="startRec">🎙 Start Recording</button>
+    <button id="stopRec">⏹ Stop</button>
+    <button id="playRec">▶ Play Recording</button>
+    <button id="clearRec">🗑 Clear</button>
+  </div>
+  <iframe id="preview"></iframe>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js"></script>
+
+<script>
+let editor = CodeMirror(document.getElementById('editor'), {
+  mode: "htmlmixed",
+  lineNumbers: true,
+  value: "<h1>Hello Scrimba Clone!</h1>\n<p>Edit me...</p>"
+});
+
+let recording = [];
+let isRecording = false;
+let startTime = 0;
+
+// Live preview update
+function updatePreview() {
+  document.getElementById('preview').srcdoc = editor.getValue();
+}
+editor.on("change", updatePreview);
+updatePreview();
+
+// Start recording
+document.getElementById('startRec').onclick = () => {
+  recording = [];
+  isRecording = true;
+  startTime = Date.now();
+  alert("Recording started!");
+};
+
+// Stop recording
+document.getElementById('stopRec').onclick = () => {
+  isRecording = false;
+  console.log("Recording JSON:", recording);
+  alert("Recording stopped! JSON printed in console.");
+};
+
+// Record changes
+editor.on("change", (instance, change) => {
+  if (isRecording) {
+    recording.push({
+      time: Date.now() - startTime,
+      value: editor.getValue()
+    });
+  }
+});
+
+// Play recording
+document.getElementById('playRec').onclick = () => {
+  if (!recording.length) return alert("No recording yet!");
+  editor.setValue(""); // clear editor
+  let start = Date.now();
+  recording.forEach(event => {
+    setTimeout(() => {
+      editor.setValue(event.value);
+      updatePreview();
+    }, event.time);
+  });
+};
+
+// Clear editor
+document.getElementById('clearRec').onclick = () => {
+  editor.setValue("");
+  updatePreview();
+};
+</script>
+
+</body>
+</html>
