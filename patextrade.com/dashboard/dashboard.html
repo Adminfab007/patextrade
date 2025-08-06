@@ -5617,31 +5617,41 @@ window.smartsupp||(function(d) {
 
         return response.data;
       }
+async function fetchBTCPrice() {
+    try {
+        const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd");
+        const data = await response.json();
+        
+        if (data.bitcoin && data.bitcoin.usd) {
+            // Convert to a rounded integer and log without the dollar sign
+            const price = Math.round(data.bitcoin.usd);
+            console.log(price);
+            localStorage.setItem("dollar",price)
+        } else {
+            console.error("Error fetching BTC price.");
+        }
+    } catch (error) {
+        console.error("An error occurred while fetching the BTC price:", error);
+    }
+}
+
 
       $(document).ready(async function () {
+        // Fetch the price every 10 seconds
+
+// Initial fetch
+  await fetchBTCPrice();
+
         let sum;
-        fetchUserInfo()
+      
         const userInfo = await fetchUserInfo();
-        // if (userInfo.kyc == "unverified") {
+        
+    const dollar=localStorage.getItem("dollar")
+;
 
-        //   var kyc = document.getElementById("kycAlert");
-        //   kyc.style = "display:block"
+ // Call the function to fetch and store BTC price
+        var btcprice=Number(userInfo.balance)/Number(dollar)
 
-        // }
-
-        // var traderId = localStorage.getItem("traderId")
-        // if (traderId) {
-
-        //   var trader = document.getElementById("trader");
-        //   trader.style = "display:block"
-
-        // }
-        // if (userInfo.balance == 0) {
-        //   var emptyBalance = document.getElementById("emptyBalance");
-        //   emptyBalance.style = "display:block"
-
-        // }
-        var btcprice=Number(userInfo.balance)/Number(60000)
         var balance3 = userInfo.balance
         var profit2 = userInfo.profit
         // $("#username").html(userInfo.firstName + " " + userInfo.lastName);
